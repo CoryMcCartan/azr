@@ -1,31 +1,37 @@
-#' Start VM instance
+#' Get Reference to VM
 #'
-#' @inheritParams azr_make_vm
+#' @inheritParams azr_vm_setup
 #'
 #' @export
-azr_start_vm <- function(name=make.names(Sys.info()["user"]),
-                         dir=Sys.getenv("AZURE_DIR"),
-                         sub_id=Sys.getenv("AZURE_SUB_ID")) {
+azr_vm <- function(name=make.names(Sys.info()["user"]),
+                   dir=Sys.getenv("AZURE_DIR"),
+                   sub_id=Sys.getenv("AZURE_SUB_ID")) {
     cli_process_start("Logging in")
     rg = azr_auth(dir, sub_id)$get_resource_group(name)
     cli_process_done()
 
     vm_name = str_c(name, "-vm")
-    rg$get_vm(vm_name)$start()
+    rg$get_vm(vm_name)
+}
+
+#' Start VM instance
+#'
+#' @inheritParams azr_vm_setup
+#'
+#' @export
+azr_vm_start <- function(name=make.names(Sys.info()["user"]),
+                         dir=Sys.getenv("AZURE_DIR"),
+                         sub_id=Sys.getenv("AZURE_SUB_ID")) {
+    azr_vm(name, dir, sub_id)$start()
 }
 
 #' Stop VM instance
 #'
-#' @inheritParams azr_make_vm
+#' @inheritParams azr_vm_setup
 #'
 #' @export
-azr_stop_vm <- function(name=make.names(Sys.info()["user"]),
+azr_vm_stop <- function(name=make.names(Sys.info()["user"]),
                          dir=Sys.getenv("AZURE_DIR"),
                          sub_id=Sys.getenv("AZURE_SUB_ID")) {
-    cli_process_start("Logging in")
-    rg = azr_auth(dir, sub_id)$get_resource_group(name)
-    cli_process_done()
-
-    vm_name = str_c(name, "-vm")
-    rg$get_vm(vm_name)$stop()
+    azr_vm(name, dir, sub_id)$stop()
 }

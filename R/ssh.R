@@ -27,6 +27,7 @@ get_ssh <- function(rg, name) {
 }
 
 #' Path to the Saved RSA Public Key
+#' @param name Resource group name
 #' @param ssh_dir The directory to store SSH files
 #' @export
 azr_ssh_pub <- function(name=make.names(Sys.info()["user"]),
@@ -39,6 +40,7 @@ azr_ssh_pub <- function(name=make.names(Sys.info()["user"]),
 }
 
 #' Path to the Saved RSA Private Key
+#' @param name Resource group name
 #' @param ssh_dir The directory to store SSH files
 #' @export
 azr_ssh_priv <- function(name=make.names(Sys.info()["user"]),
@@ -51,12 +53,14 @@ azr_ssh_priv <- function(name=make.names(Sys.info()["user"]),
 }
 
 #' Command to SSH into Azure VM
-#' @param ssh_dir The username on the VM
+#' @param name Resource group name
+#' @param ... Further rguments for [azr_vm()].
 #' @param ssh_dir The directory to store SSH files
 #' @export
-azr_ssh_cmd <- function(vm,
-                        ssh_dir=file.path(Sys.getenv("HOME"), ".ssh")) {
-    cli_text("ssh -i {azr_ssh_priv(ssh_dir)} {ssh_addr(vm)}")
+azr_ssh_cmd <- function(name=make.names(Sys.info()["user"]),
+                        ..., ssh_dir=file.path(Sys.getenv("HOME"), ".ssh")) {
+    vm = azr_vm(...)
+    cli_text("ssh -i {azr_ssh_priv(name, ssh_dir)} {ssh_addr(vm)}")
 }
 
 ssh_addr <- function(vm) {

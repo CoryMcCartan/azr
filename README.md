@@ -27,3 +27,17 @@ AZURE_DIR='<something like name.onmicrosoft.com>'
 AZURE_SUB_ID='<hyphenated hex code>'
 ```
 
+To set up a virtual machine with R installed, run
+
+``` r
+azr::azr_vm_setup()
+```
+
+You can specify the type of machine with `size=`, and additionally install a
+recent version of Rstudio Server with `rstudio=TRUE` and install R spatial
+packages with `spatial=TRUE`.
+Any R configuration files on your local machine (`.Rprofile`, etc.) will also be transferred to the VM.
+
+Once a machine is set up, you can get the command to SSH into it with
+`azr_ssh_cmd()`.
+You can also start and stop the VM with `azr_vm_start()` and `azr_vm_stop()`.

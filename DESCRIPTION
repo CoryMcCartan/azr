@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Who wrote it
 Maintainer: Cory McCartan <cmccartan@fas.harvard.edu>
 Description: Provides functionality to install the Azure CLI, set up Azure 
-    virtual machines, and install the RStudio IDE on a VM instance.
+    virtual machines with R, and install the RStudio IDE on a VM instance.
 Imports: 
     AzureRMR,
     AzureVM,
