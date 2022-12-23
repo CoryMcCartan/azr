@@ -11,7 +11,7 @@ azr_vm_start(
 )
 }
 \arguments{
-\item{name}{the name of the resource group. Defaults to your computer's username.}
+\item{name}{the name of the resource group. Will also be the username on the VM.}
 
 \item{dir, sub_id}{Azure identifiers that should be set in your \code{.Renviron}. See
 the package README for details.}

@@ -6,7 +6,9 @@
 \usage{
 azr_vm_setup(
   name = make.names(Sys.info()["user"]),
+  password = NULL,
   spatial = FALSE,
+  rstudio = FALSE,
   size = "Standard_D2s_v5",
   loc = "eastus",
   dir = Sys.getenv("AZURE_DIR"),
@@ -14,9 +16,13 @@ azr_vm_setup(
 )
 }
 \arguments{
-\item{name}{the name of the resource group. Defaults to your computer's username.}
+\item{name}{the name of the resource group. Will also be the username on the VM.}
+
+\item{password}{the local VM password to set (will be the Rstudio password as well)}
 
 \item{spatial}{if \code{TRUE} install spatial libraries as well}
+
+\item{rstudio}{if \code{TRUE} install RStudio Server}
 
 \item{size}{Machine specs. Some recommended options:
 * \code{Standard_B2s}: 2 cores, 4 GB RAM
@@ -30,7 +36,7 @@ See \url{https://learn.microsoft.com/en-us/azure/virtual-machines/sizes} for mor
 the package README for details.}
 }
 \value{
-A reference to the VM, invisibly
+A reference to the VM. See \code{AzureVM} package for details.
 }
 \description{
 Set Up an Azure Virtual Machine for R

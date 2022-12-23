@@ -6,6 +6,6 @@
 \alias{azr-package}
 \title{azr: Configure Azure Services for R}
 \description{
-Provides functionality to install the Azure CLI, set up Azure virtual machines, and install the RStudio IDE on a VM instance.
+Provides functionality to install the Azure CLI, set up Azure virtual machines with R, and install the RStudio IDE on a VM instance.
 }
 \keyword{internal}

@@ -4,10 +4,16 @@
 \alias{azr_ssh_cmd}
 \title{Command to SSH into Azure VM}
 \usage{
-azr_ssh_cmd(..., ssh_dir = file.path(Sys.getenv("HOME"), ".ssh"))
+azr_ssh_cmd(
+  name = make.names(Sys.info()["user"]),
+  ...,
+  ssh_dir = file.path(Sys.getenv("HOME"), ".ssh")
+)
 }
 \arguments{
-\item{...}{Arguments for \code{\link[=azr_vm]{azr_vm()}}.}
+\item{name}{Resource group name}
+
+\item{...}{Further rguments for \code{\link[=azr_vm]{azr_vm()}}.}
 
 \item{ssh_dir}{The directory to store SSH files}
 }
